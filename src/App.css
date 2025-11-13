@@ -501,10 +501,6 @@ body {
 
 /* Very small mobile devices */
 @media (max-width: 480px) {
-  .prompt {
-    /* Hide the long prompt on very small screens to give input space */
-    /* display: none;  */
-  }
 
   .header-left {
     padding-left: 0;
