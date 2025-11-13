@@ -7,12 +7,15 @@ const Content = () => {
   const [output, setOutput] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showCard, setShowCard] = useState(false);
+  const [commandHistory, setCommandHistory] = useState([]);
+  const [historyIndex, setHistoryIndex] = useState(-1);
+  const [githubStats, setGithubStats] = useState(null);
   const inputRef = useRef(null);
   const terminalRef = useRef(null);
 
   const navLinks = [
     "help", "about", "projects", "skills", "experience",
-    "contact", "education", "certifications", "open card", "clear"
+    "contact", "education", "certifications", "open card", "clear", "github"
   ];
 
   const commands = {
@@ -27,10 +30,10 @@ const Content = () => {
         <p><span className="output-highlight">contact</span>     - How to reach me</p>
         <p><span className="output-highlight">education</span>   - My educational background</p>
         <p><span className="output-highlight">certifications</span> - View my certifications</p>
+        <p><span className="output-highlight">github</span>      - Live GitHub statistics</p>
         <p><span className="output-highlight">open card</span>   - View 3D portfolio card</p>
         <p><span className="output-highlight">clear</span>       - Clear the terminal</p>
         <br/>
-        <p>Type any command to continue...</p>
       </div>
     ),
 
@@ -133,6 +136,27 @@ const Content = () => {
       </div>
     ),
 
+    github: (
+      <div className="command-output">
+        <p><span className="output-highlight">GitHub Statistics:</span></p>
+        <br/>
+        {githubStats ? (
+          <>
+            <p><strong>Username:</strong> {githubStats.login}</p>
+            <p><strong>Name:</strong> {githubStats.name || "Not specified"}</p>
+            <p><strong>Public Repositories:</strong> {githubStats.public_repos}</p>
+            <p><strong>Followers:</strong> {githubStats.followers}</p>
+            <p><strong>Following:</strong> {githubStats.following}</p>
+            <p><strong>Account Created:</strong> {new Date(githubStats.created_at).toLocaleDateString()}</p>
+            <br/>
+            <p>Visit my <a href={githubStats.html_url} target="_blank" rel="noopener noreferrer" className="output-link">GitHub Profile</a></p>
+          </>
+        ) : (
+          <p>Loading GitHub data...</p>
+        )}
+      </div>
+    ),
+
     "open card": (
       <div className="command-output">
         <p><span className="output-highlight">Opening 3D Portfolio Card...</span></p>
@@ -143,8 +167,34 @@ const Content = () => {
     clear: "clear"
   };
 
+  // Fetch GitHub stats
+  useEffect(() => {
+    const fetchGitHubStats = async () => {
+      try {
+        const response = await fetch('https://api.github.com/users/MohammedThouseefM');
+        if (response.ok) {
+          const data = await response.json();
+          setGithubStats(data);
+        }
+      } catch (error) {
+        console.log('GitHub API not available');
+      }
+    };
+
+    fetchGitHubStats();
+  }, []);
+
   const handleCommand = (cmd) => {
     const cleanCmd = cmd.trim().toLowerCase();
+
+    // Add to command history (excluding duplicates in a row)
+    setCommandHistory(prev => {
+      if (prev[prev.length - 1] !== cleanCmd) {
+        return [...prev, cleanCmd];
+      }
+      return prev;
+    });
+    setHistoryIndex(-1);
 
     if (cleanCmd === "clear") {
       setOutput([]);
@@ -159,7 +209,7 @@ const Content = () => {
     if (cleanCmd === "welcome") {
       setOutput(prev => [
         ...prev,
-        { type: 'command', text: `thouseef@portfolio~$ ${cmd}` },
+        { type: 'command', text: `$ ${cmd}` },
         { type: 'output', text: "Hi, I'm Mohammed Thouseef, a Full Stack Web Developer." },
         { type: 'output', text: "Welcome to my interactive portfolio terminal!" },
         { type: 'output', text: "Type 'help' to see available commands." },
@@ -189,21 +239,72 @@ const Content = () => {
     handleCommand(link);
   };
 
-  // Keyboard shortcuts
+  // Tab completion function
+  const handleTabComplete = () => {
+    if (!command.trim()) return;
+
+    const matchingCommands = navLinks.filter(cmd => 
+      cmd.startsWith(command.toLowerCase())
+    );
+    
+    if (matchingCommands.length === 1) {
+      setCommand(matchingCommands[0]);
+    } else if (matchingCommands.length > 1) {
+      // Show available completions
+      setOutput(prev => [
+        ...prev,
+        { type: 'command', text: `$ ${command}` },
+        { type: 'output', text: `Possible completions: ${matchingCommands.join(', ')}` }
+      ]);
+    }
+  };
+
+  // Keyboard shortcuts and navigation
   useEffect(() => {
     const handleKeyPress = (e) => {
+      // Ctrl/Cmd + L to clear
       if ((e.ctrlKey || e.metaKey) && e.key === 'l') {
         e.preventDefault();
         setOutput([]);
       }
+      
+      // Enter to focus input if not already focused
       if (e.key === 'Enter' && document.activeElement !== inputRef.current) {
         inputRef.current?.focus();
+      }
+
+      // Tab completion
+      if (e.key === 'Tab') {
+        e.preventDefault();
+        handleTabComplete();
+      }
+
+      // Command history with up/down arrows
+      if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (commandHistory.length > 0) {
+          const newIndex = historyIndex < commandHistory.length - 1 ? historyIndex + 1 : historyIndex;
+          setHistoryIndex(newIndex);
+          setCommand(commandHistory[commandHistory.length - 1 - newIndex] || '');
+        }
+      }
+
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (historyIndex > 0) {
+          const newIndex = historyIndex - 1;
+          setHistoryIndex(newIndex);
+          setCommand(commandHistory[commandHistory.length - 1 - newIndex] || '');
+        } else if (historyIndex === 0) {
+          setHistoryIndex(-1);
+          setCommand('');
+        }
       }
     };
 
     document.addEventListener('keydown', handleKeyPress);
     return () => document.removeEventListener('keydown', handleKeyPress);
-  }, []);
+  }, [commandHistory, historyIndex, command]);
 
   useEffect(() => {
     // Initial welcome message with typing effect
@@ -296,7 +397,7 @@ const Content = () => {
               <div>
                 <div>Loading Portfolio Terminal...</div>
                 <div style={{ marginTop: '10px', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-                  Initializing systems
+                  Initializing enhanced features
                 </div>
               </div>
             </div>
@@ -311,7 +412,6 @@ const Content = () => {
               justifyContent: 'center',
               color: 'var(--text-secondary)',
               textAlign: 'center',
-              // padding: '2rem'
             }}>
               <App/>
             </div>
@@ -346,7 +446,8 @@ const Content = () => {
 
           {/* Command Input */}
           <form onSubmit={handleSubmit} className="command-input">
-            <span className="prompt">thouseef@portfolio~$</span>
+            <div>
+              <span className="prompt">thouseef@portfolio~$</span>
             <input
               ref={inputRef}
               type="text"
@@ -357,6 +458,15 @@ const Content = () => {
               disabled={isLoading}
               placeholder={isLoading ? "Initializing..." : "Type a command..."}
             />
+            </div>
+            
+            {!isLoading && (
+              <div className="input-hints">
+                <span className="hint">↑/↓ History</span>
+                <span className="hint">Tab Complete</span>
+                <span className="hint">Ctrl+L Clear</span>
+              </div>
+            )}
           </form>
         </div>
       </section>
