@@ -445,7 +445,7 @@ body {
   .left-panel {
     /* Full width on mobile */
     width: 100%; 
-    min-height: 90vh;
+    min-height: 70vh;
     border-right: none;
     border-bottom: 1px solid var(--border-color);
     padding: 1.5rem 0; /* Adjust vertical padding */
@@ -459,7 +459,7 @@ body {
   /* Right Panel should take up the rest of the available height */
   .right-panel {
     flex: 1 1 auto;
-    min-height: 70vh;
+    min-height: 90vh;
     animation: fadeInUp 0.6s ease-out 0.6s forwards;
     transform: none !important;
   }
