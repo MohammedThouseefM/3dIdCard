@@ -258,6 +258,7 @@ body {
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--border-color);
   position: relative;
+  /* position: fixed; */
   /* Force flex wrap on smaller screens */
   display: flex; 
   flex-wrap: wrap; 
@@ -345,7 +346,7 @@ body {
   margin-top: 1.5rem;
   position: relative;
   padding-bottom: 1rem; /* Ensure space at the bottom */
-  margin-bottom: 150px;
+  /* margin-bottom: 150px; */
 }
 
 .input-line {
@@ -470,6 +471,11 @@ body {
     /* Disable scrollbar on terminal container as app container now scrolls */
     overflow-y: visible; 
   }
+
+  .command-input {
+  /* margin-bottom: 450px; !important; */
+  padding-bottom: 150px;
+}
   
   .header {
     padding: 0.75rem 1rem;
@@ -497,7 +503,7 @@ body {
 @media (max-width: 480px) {
   .prompt {
     /* Hide the long prompt on very small screens to give input space */
-    display: none; 
+    /* display: none;  */
   }
 
   .header-left {
