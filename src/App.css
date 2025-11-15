@@ -686,8 +686,7 @@ body {
   }
   
   .input-hints {
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    display: none !important; 
   }
   
   .hint {
@@ -725,7 +724,7 @@ body {
   }
   
   .input-hints {
-    justify-content: center;
+display: none !important;
   }
 }
 
