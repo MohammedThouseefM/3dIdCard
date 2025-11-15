@@ -143,7 +143,7 @@ const Content = () => {
         {githubStats ? (
           <>
             <p><strong>Username:</strong> {githubStats.login}</p>
-            <p><strong>Name:</strong> {githubStats.name || "Not specified"}</p>
+            <p><strong>Name:</strong> {githubStats.name || "Mohammed Thouseef M"}</p>
             <p><strong>Public Repositories:</strong> {githubStats.public_repos}</p>
             <p><strong>Followers:</strong> {githubStats.followers}</p>
             <p><strong>Following:</strong> {githubStats.following}</p>
