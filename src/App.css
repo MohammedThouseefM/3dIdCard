@@ -753,3 +753,80 @@ display: none !important;
     --bg-tertiary: #161b22;
   }
 }
+
+/* Add to your existing App.css */
+
+/* Cleaner output styling */
+.command-output {
+  margin: 0.5rem 0;
+  padding: 0;
+  border-left: none;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.terminal-line {
+  margin: 0.35rem 0;
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+  color: var(--text-primary);
+  line-height: 1.4;
+  font-family: 'Fira Code', monospace;
+}
+
+.output-content {
+  margin: 0.5rem 0;
+}
+
+.output-highlight {
+  color: var(--accent-primary);
+  font-weight: 600;
+}
+
+.output-muted {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.output-link {
+  color: var(--accent-dim);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent-dim);
+  transition: all 0.2s ease;
+}
+
+.output-link:hover {
+  color: var(--accent-primary);
+  border-bottom-style: solid;
+}
+
+.project-item {
+  margin: 0.5rem 0;
+  padding: 0.25rem 0;
+  transition: all 0.2s ease;
+}
+
+.project-item:hover {
+  background: rgba(0, 255, 136, 0.03);
+  border-radius: 2px;
+  padding-left: 0.25rem;
+}
+
+.command-prompt {
+  color: var(--accent-dim);
+  font-weight: 500;
+}
+
+/* Make navigation more compact */
+.navigation {
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+}
+
+.nav-link {
+  font-size: 0.85rem;
+  padding: 0.25rem 0.5rem;
+}
+
+/* Reduce spacing in command input */
+.command-input div {
+  padding-top: 0.5rem;
+}

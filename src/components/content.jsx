@@ -14,153 +14,155 @@ const Content = () => {
   const terminalRef = useRef(null);
 
   const navLinks = [
-    "help", "about", "projects", "skills", "experience",
-    "contact", "education", "certifications", "open card", "clear", "github"
+    "help", "about", "projects", "skills",
+    "contact", "education", "certifications", "open card", "github", "clear"
   ];
 
   const commands = {
     help: (
-      <div className="command-output">
-        <p><span className="output-highlight">Available commands:</span></p>
-        <br/>
-        <p><span className="output-highlight">about</span>       - Learn about me</p>
-        <p><span className="output-highlight">projects</span>    - View my projects</p>
-        <p><span className="output-highlight">skills</span>      - See my technical skills</p>
-        <p><span className="output-highlight">experience</span>  - My work experience</p>
-        <p><span className="output-highlight">contact</span>     - How to reach me</p>
-        <p><span className="output-highlight">education</span>   - My educational background</p>
-        <p><span className="output-highlight">certifications</span> - View my certifications</p>
-        <p><span className="output-highlight">github</span>      - Live GitHub statistics</p>
-        <p><span className="output-highlight">open card</span>   - View 3D portfolio card</p>
-        <p><span className="output-highlight">clear</span>       - Clear the terminal</p>
-        <br/>
+      <div>
+        <div><span className="output-highlight">Available commands:</span></div>
+        <div style={{ marginTop: '0.5rem' }}>
+          <div><span className="output-highlight">about</span>       - Learn about me</div>
+          <div><span className="output-highlight">projects</span>    - View my projects</div>
+          <div><span className="output-highlight">skills</span>      - See my technical skills</div>
+          {/* <div><span className="output-highlight">experience</span>  - My work experience</div> */}
+          <div><span className="output-highlight">contact</span>     - How to reach me</div>
+          <div><span className="output-highlight">education</span>   - My educational background</div>
+          <div><span className="output-highlight">certifications</span> - View my certifications</div>
+          <div><span className="output-highlight">github</span>      - Live GitHub statistics</div>
+          <div><span className="output-highlight">open card</span>   - View 3D portfolio card</div>
+          <div><span className="output-highlight">clear</span>       - Clear the terminal</div>
+        </div>
       </div>
     ),
 
     about: (
-      <div className="command-output">
-        <p><span className="output-highlight">Mohammed Thouseef</span></p>
-        <p><span className="output-muted">Full Stack Developer & AI Enthusiast</span></p>
-        <br/>
-        <p>Passionate full-stack developer with expertise in modern web technologies.</p>
-        <p>I specialize in creating efficient, scalable solutions and enjoy solving</p>
-        <p>complex problems with clean, maintainable code.</p>
-        <br/>
-        <p><span className="output-highlight">Interests:</span> Web Development, AI/ML, Open Source, UX/UI Design</p>
+      <div>
+        <div><span className="output-highlight">Mohammed Thouseef</span></div>
+        <div style={{ color: 'var(--text-muted)', marginBottom: '0.75rem' }}>Full Stack Developer & AI Enthusiast</div>
+        <div>Passionate full-stack developer with expertise in modern web technologies.</div>
+        <div>I specialize in creating efficient, scalable solutions and enjoy solving</div>
+        <div>complex problems with clean, maintainable code.</div>
+        <div style={{ marginTop: '0.75rem' }}><span className="output-highlight">Interests:</span> Web Development, AI/ML, Open Source, UX/UI Design</div>
       </div>
     ),
 
     projects: (
-      <div className="command-output">
-        <p><span className="output-highlight">Featured Projects:</span></p>
-        <br/>
-        <div className="project-item">
-          <strong>Portfolio Terminal</strong> - Interactive terminal-style portfolio built with React + Three.js
+      <div>
+        <div><span className="output-highlight">Featured Projects:</span></div>
+        <div style={{ marginTop: '0.75rem' }}>
+          <div className="project-item">
+            <strong>Portfolio Terminal</strong> - Interactive terminal-style portfolio built with React + Three.js
+          </div>
+          <div className="project-item">
+            <strong>E-commerce Platform</strong> - Full-stack online store with MERN stack
+          </div>
+          <div className="project-item">
+            <strong>Task Management App</strong> - Real-time productivity application
+          </div>
+          <div className="project-item">
+            <strong>API Integration Service</strong> - Microservices architecture with Node.js
+          </div>
         </div>
-        <div className="project-item">
-          <strong>E-commerce Platform</strong> - Full-stack online store with MERN stack
+        <div style={{ marginTop: '0.75rem' }}>
+          View more on <a href="https://github.com/MohammedThouseefM" target="_blank" rel="noopener noreferrer" className="output-link">GitHub</a>
         </div>
-        <div className="project-item">
-          <strong>Task Management App</strong> - Real-time productivity application
-        </div>
-        <div className="project-item">
-          <strong>API Integration Service</strong> - Microservices architecture with Node.js
-        </div>
-        <br/>
-        <p>View more on <a href="https://github.com/MohammedThouseefM" target="_blank" rel="noopener noreferrer" className="output-link">GitHub</a></p>
       </div>
     ),
 
     skills: (
-      <div className="command-output">
-        <p><span className="output-highlight">Technical Skills:</span></p>
-        <br/>
-        <p><strong>Frontend:</strong> JavaScript, React, TypeScript, HTML5, CSS3, Three.js</p>
-        <p><strong>Backend:</strong> Node.js, Express, Python, REST APIs, GraphQL</p>
-        <p><strong>Database:</strong> MongoDB, PostgreSQL, MySQL, Redis</p>
-        <p><strong>DevOps:</strong> Docker, AWS, CI/CD, Git, Linux</p>
-        <p><strong>Tools:</strong> Git, Webpack, Jest, Postman, Figma</p>
+      <div>
+        <div><span className="output-highlight">Technical Skills:</span></div>
+        <div style={{ marginTop: '0.75rem' }}>
+          <div><strong>Frontend:</strong> JavaScript, React, TypeScript, HTML5, CSS3.</div>
+          <div><strong>Backend:</strong> Node.js, Express, Python, REST APIs, GraphQL</div>
+          <div><strong>Database:</strong> MongoDB, PostgreSQL, MySQL, Redis</div>
+          <div><strong>DevOps:</strong> Docker, AWS, CI/CD, Git, Linux</div>
+          <div><strong>Tools:</strong> Git, Webpack, Jest, Postman, Figma</div>
+        </div>
       </div>
     ),
 
     experience: (
-      <div className="command-output">
-        <p><span className="output-highlight">Work Experience:</span></p>
-        <br/>
-        <div className="project-item">
-          <strong>Full Stack Developer</strong> - Current Position
-          <br/>
-          <span className="output-muted">Developing web applications with modern technologies</span>
-        </div>
-        <br/>
-        <div className="project-item">
-          <strong>Web Development Intern</strong> - Previous Experience
-          <br/>
-          <span className="output-muted">Gained hands-on experience in full-stack development</span>
+      <div>
+        <div><span className="output-highlight">Work Experience:</span></div>
+        <div style={{ marginTop: '0.75rem' }}>
+          <div className="project-item">
+            <strong>Full Stack Developer</strong> - Current Position
+            <div style={{ color: 'var(--text-muted)', fontSize: '0.9em' }}>Developing web applications with modern technologies</div>
+          </div>
+          <div className="project-item">
+            <strong>Web Development Intern</strong> - Previous Experience
+            <div style={{ color: 'var(--text-muted)', fontSize: '0.9em' }}>Gained hands-on experience in full-stack development</div>
+          </div>
         </div>
       </div>
     ),
 
     contact: (
-      <div className="command-output">
-        <p><span className="output-highlight">Contact Information:</span></p>
-        <br/>
-        <p><strong>Email:</strong> <a href="mailto:mthouseef100@gmail.com" className="output-link">mthouseef100@gmail.com</a></p>
-        <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/mohammed-thouseef-mohammed148350" target="_blank" rel="noopener noreferrer" className="output-link">linkedin.com/in/mohammed-thouseef-mohammed148350</a></p>
-        <p><strong>GitHub:</strong> <a href="https://github.com/MohammedThouseefM" target="_blank" rel="noopener noreferrer" className="output-link">github.com/MohammedThouseefM</a></p>
-        <br/>
-        <p>Feel free to reach out for collaborations or opportunities!</p>
+      <div>
+        <div><span className="output-highlight">Contact Information:</span></div>
+        <div style={{ marginTop: '0.75rem' }}>
+          <div><strong>Email:</strong> <a href="mailto:mthouseef100@gmail.com" className="output-link">mthouseef100@gmail.com</a></div>
+          <div><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/mohammed-thouseef-mohammed148350" target="_blank" rel="noopener noreferrer" className="output-link">linkedin.com/in/mohammed-thouseef-mohammed148350</a></div>
+          <div><strong>GitHub:</strong> <a href="https://github.com/MohammedThouseefM" target="_blank" rel="noopener noreferrer" className="output-link">github.com/MohammedThouseefM</a></div>
+        </div>
+        <div style={{ marginTop: '0.75rem' }}>Feel free to reach out for collaborations or opportunities!</div>
       </div>
     ),
 
     education: (
-      <div className="command-output">
-        <p><span className="output-highlight">Education:</span></p>
-        <br/>
-        <div className="project-item">
-          <strong>Bachelor's in Computer Science</strong>
-          <br/>
-          <span className="output-muted">Relevant Courses: Data Structures, Algorithms, Web Development, AI/ML</span>
+      <div>
+        <div><span className="output-highlight">Education:</span></div>
+        <div style={{ marginTop: '0.75rem' }}>
+          <div className="project-item">
+            <strong>Bachelor's in Computer Science</strong>
+            <div style={{ color: 'var(--text-muted)', fontSize: '0.9em' }}>Relevant Courses: Data Structures, Algorithms, Web Development, AI/ML</div>
+          </div>
         </div>
       </div>
     ),
 
     certifications: (
-      <div className="command-output">
-        <p><span className="output-highlight">Certifications:</span></p>
-        <br/>
-        <div className="project-item">Full Stack Web Development Certification</div>
-        <div className="project-item">React & Node.js Professional Certification</div>
-        <div className="project-item">AWS Cloud Practitioner</div>
-        <div className="project-item">MongoDB University Certification</div>
+      <div>
+        <div><span className="output-highlight">Certifications:</span></div>
+        <div style={{ marginTop: '0.75rem' }}>
+          <div className="project-item">Full Stack Web Development Certification</div>
+          <div className="project-item">React & Node.js Professional Certification</div>
+          <div className="project-item">AWS Cloud Practitioner</div>
+          <div className="project-item">MongoDB University Certification</div>
+        </div>
       </div>
     ),
 
     github: (
-      <div className="command-output">
-        <p><span className="output-highlight">GitHub Statistics:</span></p>
-        <br/>
-        {githubStats ? (
-          <>
-            <p><strong>Username:</strong> {githubStats.login}</p>
-            <p><strong>Name:</strong> {githubStats.name || "Mohammed Thouseef M"}</p>
-            <p><strong>Public Repositories:</strong> {githubStats.public_repos}</p>
-            <p><strong>Followers:</strong> {githubStats.followers}</p>
-            <p><strong>Following:</strong> {githubStats.following}</p>
-            <p><strong>Account Created:</strong> {new Date(githubStats.created_at).toLocaleDateString()}</p>
-            <br/>
-            <p>Visit my <a href={githubStats.html_url} target="_blank" rel="noopener noreferrer" className="output-link">GitHub Profile</a></p>
-          </>
-        ) : (
-          <p>Loading GitHub data...</p>
-        )}
+      <div>
+        <div><span className="output-highlight">GitHub Statistics:</span></div>
+        <div style={{ marginTop: '0.75rem' }}>
+          {githubStats ? (
+            <>
+              <div><strong>Username:</strong> {githubStats.login}</div>
+              <div><strong>Name:</strong> {githubStats.name || "Mohammed Thouseef M"}</div>
+              <div><strong>Public Repositories:</strong> {githubStats.public_repos}</div>
+              <div><strong>Followers:</strong> {githubStats.followers}</div>
+              <div><strong>Following:</strong> {githubStats.following}</div>
+              <div><strong>Account Created:</strong> {new Date(githubStats.created_at).toLocaleDateString()}</div>
+              <div style={{ marginTop: '0.75rem' }}>
+                Visit my <a href={githubStats.html_url} target="_blank" rel="noopener noreferrer" className="output-link">GitHub Profile</a>
+              </div>
+            </>
+          ) : (
+            <div>Loading GitHub data...</div>
+          )}
+        </div>
       </div>
     ),
 
     "open card": (
-      <div className="command-output">
-        <p><span className="output-highlight">Opening 3D Portfolio Card...</span></p>
-        <p>Interactive 3D card loaded in the left panel.</p>
+      <div>
+        <div><span className="output-highlight">Opening 3D Portfolio Card...</span></div>
+        <div>Interactive 3D card loaded in the left panel.</div>
       </div>
     ),
 
@@ -212,8 +214,7 @@ const Content = () => {
         { type: 'command', text: `$ ${cmd}` },
         { type: 'output', text: "Hi, I'm Mohammed Thouseef, a Full Stack Web Developer." },
         { type: 'output', text: "Welcome to my interactive portfolio terminal!" },
-        { type: 'output', text: "Type 'help' to see available commands." },
-        { type: 'output', text: "" }
+        { type: 'output', text: "Type 'help' to see available commands." }
       ]);
       return;
     }
@@ -355,14 +356,14 @@ const Content = () => {
     if (line.type === 'command') {
       return (
         <div key={index} className="terminal-line">
-          <span style={{ color: 'var(--accent-dim)' }}>{line.text || ''}</span>
+          <span className="command-prompt">{line.text || ''}</span>
         </div>
       );
     }
 
     if (line.content) {
       return (
-        <div key={index} className="terminal-line">
+        <div key={index} className="terminal-line output-content">
           {line.content}
         </div>
       );
@@ -447,17 +448,17 @@ const Content = () => {
           {/* Command Input */}
           <form onSubmit={handleSubmit} className="command-input">
             <div>
-              <span className="prompt">thouseef@portfolio~$</span>
-            <input
-              ref={inputRef}
-              type="text"
-              value={command}
-              onChange={(e) => setCommand(e.target.value)}
-              className="input-line"
-              autoFocus={!isLoading}
-              disabled={isLoading}
-              placeholder={isLoading ? "Initializing..." : "Type a command..."}
-            />
+              <span className="prompt">thouseef@portfolio:~$</span>
+              <input
+                ref={inputRef}
+                type="text"
+                value={command}
+                onChange={(e) => setCommand(e.target.value)}
+                className="input-line"
+                autoFocus={!isLoading}
+                disabled={isLoading}
+                placeholder={isLoading ? "Initializing..." : "Type a command..."}
+              />
             </div>
             
             {!isLoading && (
